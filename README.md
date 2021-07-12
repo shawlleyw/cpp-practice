@@ -8,7 +8,7 @@ Two programs to practice cpp with modern features and google code style.
 
 ### Task
 
-![](C:\Users\wsy\Desktop\for zzx\fraction\task.jpg)
+![](fraction\task.jpg)
 
 ### Features
 
@@ -20,7 +20,7 @@ Two programs to practice cpp with modern features and google code style.
 
 ### Task
 
-![](C:\Users\wsy\Desktop\for zzx\pet shelves\task.jpg)
+![](pet shelves\task.jpg)
 
 ### Features
 
