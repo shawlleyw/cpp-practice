@@ -20,7 +20,7 @@ Two programs to practice cpp with modern features and google code style.
 
 ### Task
 
-![](./pet shelves/task.jpg)
+![](./pet-shelves/task.jpg)
 
 ### Features
 
