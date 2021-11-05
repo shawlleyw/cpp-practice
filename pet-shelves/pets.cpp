@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 
 class Animal {
-public:
+ public:
   Animal();
   virtual ~Animal();
   virtual void Showme() = 0;
   virtual std::string Kind() = 0;
   friend std::istream &operator>>(std::istream &, Animal &);
 
-protected:
+ protected:
   std::string name_, color_, food_;
   double weight_;
 };
@@ -32,7 +32,7 @@ std::istream &operator>>(std::istream &input, Animal &B) {
 }
 
 class Cat : public Animal {
-public:
+ public:
   Cat();
   ~Cat();
   void Showme();
@@ -50,7 +50,7 @@ void Cat::Showme() {
 std::string Cat::Kind() { return std::string("cat"); }
 
 class Dog : public Animal {
-public:
+ public:
   Dog();
   ~Dog();
   void Showme();
@@ -68,7 +68,7 @@ void Dog::Showme() {
 }
 
 class Snake : public Animal {
-public:
+ public:
   Snake();
   ~Snake();
   void Showme();
@@ -86,7 +86,7 @@ void Snake::Showme() {
 }
 std::string Snake::Kind() { return std::string("snake"); }
 class Shelves {
-public:
+ public:
   Shelves();
   ~Shelves();
   void AddTo(Animal *new_comer, int position);
@@ -95,7 +95,7 @@ public:
   void Count();
   void PrintCageList();
 
-private:
+ private:
   static const int MAX_CAGES = 12;
   Animal *cages_[MAX_CAGES];
 };
@@ -123,10 +123,11 @@ void Shelves::AddTo(Animal *new_comer, int position) {
 }
 
 void Shelves::Remove(int position) {
-  if (cages_[position] != nullptr)
+  if (cages_[position] != nullptr) {
     cages_[position] = nullptr;
-  else
+  } else {
     std::cerr << "Operation failed: This cage has not held a pet!" << std::endl;
+  }
 }
 
 void Shelves::Query(int position) {
@@ -140,15 +141,16 @@ void Shelves::Query(int position) {
 void Shelves::Count() {
   int cats = 0, dogs = 0, snakes = 0, emptys = 0;
   for (int i = 0; i < MAX_CAGES; i++) {
-    if (cages_[i] == nullptr)
+    if (cages_[i] == nullptr) {
       emptys++;
-    else {
-      if (cages_[i]->Kind() == std::string("cat"))
+    } else {
+      if (cages_[i]->Kind() == std::string("cat")) {
         cats++;
-      else if (cages_[i]->Kind() == std::string("dog"))
+      } else if (cages_[i]->Kind() == std::string("dog")) {
         dogs++;
-      else if (cages_[i]->Kind() == std::string("snake"))
+      } else if (cages_[i]->Kind() == std::string("snake")) {
         snakes++;
+      }
     }
   }
   std::cout << "Emptys Cages: " << emptys << std::endl;
@@ -161,10 +163,11 @@ void Shelves::PrintCageList() {
   std::cout << "---------------------------------" << std::endl;
   for (int i = 0; i < MAX_CAGES; i++) {
     std::cout << "cages " << i << ": " << std::endl;
-    if (cages_[i] == nullptr)
+    if (cages_[i] == nullptr) {
       std::cout << "This is an empty cage." << std::endl;
-    else
+    } else {
       cages_[i]->Showme();
+    }
     std::cout << "---------------------------------" << std::endl;
   }
 }
@@ -180,7 +183,8 @@ void InfoBar() {
   std::cout << "5. Print the cage list." << std::endl;
 }
 
-template <class T> void StdInput(const char *info, T &input) {
+template <class T>
+void StdInput(const char *info, T &input) {
   std::cout << info;
   std::cin >> input;
   std::cout << std::endl;
@@ -195,40 +199,39 @@ void Test() {
     InfoBar();
     std::cin >> op;
     switch (op) {
-    case 0:
-      return;
-      break;
-    case 1:
-      StdInput("input the kind of the new pet: ", kind);
-      if (kind == std::string("cat")) {
-        pet = new Cat();
-      } else if (kind == std::string("dog")) {
-        pet = new Dog();
-      } else if (kind == std::string("snake")) {
-        pet = new Snake();
-      } else {
-        std::cout << "Error: Invalid kind!" << std::endl;
-      }
-      StdInput("select a cage for the new pet: ", pos);
-      if (pet != nullptr)
-        shelf.AddTo(pet, pos);
-      break;
-    case 2:
-      StdInput("select a cage for the new pet: ", pos);
-      shelf.Remove(pos);
-      break;
-    case 3:
-      StdInput("select a cage to query: ", pos);
-      shelf.Query(pos);
-      break;
-    case 4:
-      shelf.Count();
-      break;
-    case 5:
-      shelf.PrintCageList();
-      break;
-    default:
-      pet = nullptr;
+      case 0:
+        return;
+        break;
+      case 1:
+        StdInput("input the kind of the new pet: ", kind);
+        if (kind == std::string("cat")) {
+          pet = new Cat();
+        } else if (kind == std::string("dog")) {
+          pet = new Dog();
+        } else if (kind == std::string("snake")) {
+          pet = new Snake();
+        } else {
+          std::cout << "Error: Invalid kind!" << std::endl;
+        }
+        StdInput("select a cage for the new pet: ", pos);
+        if (pet != nullptr) shelf.AddTo(pet, pos);
+        break;
+      case 2:
+        StdInput("select a cage for the new pet: ", pos);
+        shelf.Remove(pos);
+        break;
+      case 3:
+        StdInput("select a cage to query: ", pos);
+        shelf.Query(pos);
+        break;
+      case 4:
+        shelf.Count();
+        break;
+      case 5:
+        shelf.PrintCageList();
+        break;
+      default:
+        pet = nullptr;
     }
   }
 }

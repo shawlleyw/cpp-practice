@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
+
 #include <iostream>
 
 class Fraction {
-public:
-  //numerator_ denominator_
+ public:
+  // numerator_ denominator_
   Fraction();
   Fraction(int num, int den);
   ~Fraction();
@@ -13,7 +14,7 @@ public:
   Fraction operator/(const Fraction &) const;
   friend std::ostream &operator<<(std::ostream &, const Fraction &);
 
-private:
+ private:
   int numerator_, denominator_;
   Fraction reduction();
 };
