@@ -115,11 +115,12 @@ Shelves::~Shelves() {
 }
 
 void Shelves::AddTo(Animal *new_comer, int position) {
-  if (cages_[position] == nullptr)
+  if (cages_[position] == nullptr) {
     cages_[position] = new_comer;
-  else
+  } else {
     std::cerr << "Operation failed: This cage has already held a pet!"
               << std::endl;
+  }
 }
 
 void Shelves::Remove(int position) {
@@ -214,7 +215,9 @@ void Test() {
           std::cout << "Error: Invalid kind!" << std::endl;
         }
         StdInput("select a cage for the new pet: ", pos);
-        if (pet != nullptr) shelf.AddTo(pet, pos);
+        if (pet != nullptr) {
+          shelf.AddTo(pet, pos);
+        }
         break;
       case 2:
         StdInput("select a cage for the new pet: ", pos);
